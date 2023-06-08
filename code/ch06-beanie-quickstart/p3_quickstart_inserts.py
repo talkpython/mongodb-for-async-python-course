@@ -8,7 +8,7 @@ import pydantic
 
 
 # Goal of this step:
-# Connect to MongoDB with Beanie.
+# Insert some data to use for the rest of the demo.
 # We'll evolve this into beanie in the next step.
 
 async def main():

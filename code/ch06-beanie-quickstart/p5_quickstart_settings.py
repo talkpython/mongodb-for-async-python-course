@@ -8,7 +8,7 @@ import pydantic
 
 
 # Goal of this step:
-# Connect to MongoDB with Beanie.
+# Customize how Beanie stores our objects in Mongo (collection name, index, and more)
 # We'll evolve this into beanie in the next step.
 
 async def main():
