@@ -47,7 +47,8 @@ async def main():
         show_report(report)
 
     dt = datetime.datetime.now() - t0
-    print(f"Done in {dt.total_seconds() * 100:,.1f} ms.")
+    # Oops, recording has 100, should have been 1,000. But the ratios still hold the same.
+    print(f"Done in {dt.total_seconds() * 1000:,.1f} ms.")
 
 
 def show_report(report):
