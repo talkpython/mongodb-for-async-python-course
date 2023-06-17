@@ -1,6 +1,10 @@
+import datetime
 from typing import Optional
 
+import pymongo.results
 from beanie.odm.operators.find.array import ElemMatch
+from beanie.odm.operators.update import array
+from beanie.odm.operators.update.general import Set, Inc
 
 from models.package import Package, Release
 from models.release_analytics import ReleaseAnalytics
@@ -52,18 +56,38 @@ async def packages_with_version(major: int, minor: int, build: int) -> int:
 
 async def create_release(major: int, minor: int, build: int,
                          name: str, comment: str, size: int, url: Optional[str]):
-    package = await package_by_name(name)
-    if package is None:
-        raise Exception(f"No package with {name}")
-
     release = Release(
         major_ver=major, minor_ver=minor, build_ver=build,
         comment=comment, url=url, size=size
     )
 
-    package.releases.append(release)
-    await package.save()
+    update_result: pymongo.results.UpdateResult = await Package \
+        .find_one(Package.id == name).update(
+            array.Push({Package.releases: release}),
+            Set({Package.last_updated: datetime.datetime.now()})
+        )
 
-    analytics = await ReleaseAnalytics.find_one()
-    analytics.total_releases += 1
-    await analytics.save()
+    if update_result.modified_count < 1:
+        raise Exception(f"No package with {name}")
+
+    await ReleaseAnalytics.find_one().update(Inc({ReleaseAnalytics.total_releases: 1}))
+
+# Fine but full ODM style, less efficient
+# async def create_release(major: int, minor: int, build: int,
+#                          name: str, comment: str, size: int, url: Optional[str]):
+#     package = await package_by_name(name)
+#     if package is None:
+#         raise Exception(f"No package with {name}")
+#
+#     release = Release(
+#         major_ver=major, minor_ver=minor, build_ver=build,
+#         comment=comment, url=url, size=size
+#     )
+#
+#     package.last_updated = datetime.datetime.now()
+#     package.releases.append(release)
+#     await package.save()
+#
+#     analytics = await ReleaseAnalytics.find_one()
+#     analytics.total_releases += 1
+#     await analytics.save()
