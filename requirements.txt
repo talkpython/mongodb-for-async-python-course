@@ -30,6 +30,8 @@ lazy-model==0.0.5
     # via beanie
 motor==3.1.2
     # via beanie
+passlib==1.7.4
+    # via -r requirements.in
 pydantic==1.10.9
     # via
     #   -r requirements.in
