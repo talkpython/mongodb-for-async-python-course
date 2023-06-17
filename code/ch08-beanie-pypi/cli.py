@@ -37,6 +37,10 @@ async def main():
             case _:
                 print("Sorry, we don't understand that command.")
 
+        print()  # give the output a little room each time.
+
+    print('bye!')
+
 
 def print_header():
     pad = 30
@@ -61,7 +65,27 @@ async def summary():
 
 
 async def search_for_package():
-    print("searching")
+    print("Let's find some packages")
+    name = input("Enter the exact name of a package to find: ").lower().strip()
+
+    package = await package_service.package_by_name(name)
+    if package:
+        print(f'Found {package.id}, last updated: {package.last_updated.date().isoformat()}, with '
+              f'{len(package.releases):,} releases.')
+    else:
+        print(f"No package with ID {name} found.")
+
+    print("Now let's find packages with a certain release.")
+    text = input("Enter version text in the format 1.2.3: ")
+    parts = text.strip().split('.')
+    major = int(parts[0])
+    minor = int(parts[1])
+    build = int(parts[2])
+
+    package_count = await package_service.packages_with_version(major, minor, build)
+    print(f'We found {package_count:,} packages with version {major}.{minor}.{build}')
+
+    print()
 
 
 async def recently_updated():
