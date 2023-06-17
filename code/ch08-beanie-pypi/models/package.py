@@ -2,7 +2,6 @@ import datetime
 from typing import Optional
 
 import beanie as beanie
-import bson
 import pydantic
 
 
@@ -28,7 +27,7 @@ class Package(beanie.Document):
     author_email: Optional[str]
     license: Optional[str]
     releases: list[Release]
-    maintainer_ids: list[bson.ObjectId]
+    maintainer_ids: list[beanie.PydanticObjectId]
 
     class Settings:
         name = 'packages'
