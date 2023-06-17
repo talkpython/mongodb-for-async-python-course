@@ -2,3 +2,4 @@ pydantic
 httpx
 beanie
 passlib
+argon2_cffi
