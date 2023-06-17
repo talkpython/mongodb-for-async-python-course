@@ -1,6 +1,7 @@
 import asyncio
 
 from infrastructure import mongo_setup
+from services import package_service, user_service
 
 
 async def main():
@@ -48,9 +49,9 @@ def print_header():
 
 
 async def summary():
-    package_count = 0
-    release_count = 0
-    user_count = 0
+    package_count = await package_service.package_count()
+    release_count = await package_service.release_count()
+    user_count = await user_service.user_count()
 
     print('PyPI Package Stats')
     print(f'Packages: {package_count:,}')
