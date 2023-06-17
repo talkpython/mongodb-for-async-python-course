@@ -100,7 +100,25 @@ async def create_user():
 
 
 async def create_release():
-    print("create_release")
+    print("Create a release")
+    name = input("Enter the name of the package for the release: ")
+
+    package = await package_service.package_by_name(name)
+    if not package:
+        print(f"Error: Package with name {name} not found.")
+        return
+
+    print(f"Ok, we'll need some info about the release for {name}")
+    version_text = input("Version (e.g. 1.2.3): ")
+    v_parts = version_text.strip().split(".")
+    major, minor, build = int(v_parts[0]), int(v_parts[1]), int(v_parts[2])
+
+    comment = input("Comment about this release: ").strip()
+    size = int(input("Size in bytes: "))
+    url = input("Url for release notes (optional - enter to skip): ") or None
+
+    await package_service.create_release(major, minor, build, name, comment, size, url)
+    print(f"Release added for {version_text} of {name}.")
 
 
 if __name__ == '__main__':

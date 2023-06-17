@@ -2,7 +2,7 @@ from typing import Optional
 
 from beanie.odm.operators.find.array import ElemMatch
 
-from models.package import Package
+from models.package import Package, Release
 from models.release_analytics import ReleaseAnalytics
 
 
@@ -48,3 +48,22 @@ async def packages_with_version(major: int, minor: int, build: int) -> int:
     ).count()
 
     return packages_count
+
+
+async def create_release(major: int, minor: int, build: int,
+                         name: str, comment: str, size: int, url: Optional[str]):
+    package = await package_by_name(name)
+    if package is None:
+        raise Exception(f"No package with {name}")
+
+    release = Release(
+        major_ver=major, minor_ver=minor, build_ver=build,
+        comment=comment, url=url, size=size
+    )
+
+    package.releases.append(release)
+    await package.save()
+
+    analytics = await ReleaseAnalytics.find_one()
+    analytics.total_releases += 1
+    await analytics.save()

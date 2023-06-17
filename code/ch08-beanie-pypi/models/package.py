@@ -9,16 +9,16 @@ class Release(pydantic.BaseModel):
     major_ver: int
     minor_ver: int
     build_ver: int
-    created_date: datetime.datetime
+    created_date: datetime.datetime = pydantic.Field(default_factory=datetime.datetime.now)
     comment: Optional[str]
-    url: str
+    url: Optional[str]
     size: int
 
 
 class Package(beanie.Document):
     id: str
-    created_date: datetime.datetime
-    last_updated: datetime.datetime
+    created_date: datetime.datetime = pydantic.Field(default_factory=datetime.datetime.now)
+    last_updated: datetime.datetime = pydantic.Field(default_factory=datetime.datetime.now)
     summary: str
     description: str
     home_page: Optional[str]

@@ -14,8 +14,8 @@ class User(beanie.Document):
     name: str
     email: str
     hash_password: Optional[str]
-    created_date: datetime.datetime
-    last_login: datetime.datetime
+    created_date: datetime.datetime = pydantic.Field(default_factory=datetime.datetime.now)
+    last_login: datetime.datetime = pydantic.Field(default_factory=datetime.datetime.now)
     profile_image_url: Optional[str]
     location: Location
 
