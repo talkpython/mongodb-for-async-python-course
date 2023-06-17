@@ -65,7 +65,10 @@ async def search_for_package():
 
 
 async def recently_updated():
-    print("recently_updated")
+    packages = await package_service.recently_updated()
+    for n, p in enumerate(packages, start=1):
+        print(f'{n}. {p.id} ({p.last_updated.date().isoformat()}) - {p.summary[:80]}')
+    print()
 
 
 async def create_user():

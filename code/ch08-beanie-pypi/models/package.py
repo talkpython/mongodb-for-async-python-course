@@ -9,13 +9,14 @@ class Release(pydantic.BaseModel):
     major_ver: int
     minor_ver: int
     build_ver: int
-    created_date: str
+    created_date: datetime.datetime
     comment: Optional[str]
     url: str
     size: int
 
 
 class Package(beanie.Document):
+    id: str
     created_date: datetime.datetime
     last_updated: datetime.datetime
     summary: str
