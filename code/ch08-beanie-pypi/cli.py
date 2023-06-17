@@ -1,6 +1,7 @@
 import asyncio
 
 from infrastructure import mongo_setup
+from models.user import Location
 from services import package_service, user_service
 
 
@@ -96,7 +97,21 @@ async def recently_updated():
 
 
 async def create_user():
-    print("create_user")
+    print("Create new user:")
+    name = input("What is the user's full name: ")
+    email = input("What is the user's email: ")
+    if await user_service.user_by_email(email):
+        print(f"Error: A user with the email {email} already exists, cancelling.")
+        return
+
+    password = input("Enter the password: ")
+    state = input("Enter state or providence: ")
+    country = input("Enter country: ")
+
+    location = Location(state=state, country=country)
+    user = await user_service.create_user(name, email, password, None, location)
+
+    print(f"Created {user.name} ({user.email}) with ID {user.id}")
 
 
 async def create_release():
