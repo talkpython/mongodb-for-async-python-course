@@ -29,3 +29,7 @@ class Package(beanie.Document):
     license: Optional[str]
     releases: list[Release]
     maintainer_ids: list[bson.ObjectId]
+
+    class Settings:
+        name = 'packages'
+        indexes = []

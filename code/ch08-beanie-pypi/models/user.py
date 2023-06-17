@@ -18,3 +18,7 @@ class User(beanie.Document):
     last_login: datetime.datetime
     profile_image_url: Optional[str]
     location: Location
+
+    class Settings:
+        name = 'users'
+        indexes = []
