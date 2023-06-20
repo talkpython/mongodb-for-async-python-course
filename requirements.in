@@ -1,5 +1,7 @@
-pydantic
-httpx
-beanie
-passlib
 argon2_cffi
+beanie
+fastapi
+httpx
+passlib
+pydantic
+uvicorn
