@@ -20,6 +20,7 @@ async def recent(count: int):
     model = RecentPackagesModel(count=count, packages=package_models)
     return model
 
+    # Superseded by the pydantic model RecentPackagesModel.
     # return {
     #     "count": count,
     #     "packages": [
