@@ -23,7 +23,7 @@ async def release_count() -> int:
     return analytics.total_releases
 
 
-async def recently_updated(count=5):
+async def recently_updated(count=5) -> list[Package]:
     # noinspection PyUnresolvedReferences
     updated = await Package.find_all().sort(-Package.last_updated).limit(count).to_list()
 
