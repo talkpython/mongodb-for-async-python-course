@@ -31,6 +31,11 @@ async def recently_updated(count=5):
 
 
 async def package_by_name(name: str) -> Optional[Package]:
+    if not name:
+        return None
+
+    name = name.lower().strip()
+
     package = await Package.find_one(Package.id == name)
     return package
 
@@ -63,9 +68,9 @@ async def create_release(major: int, minor: int, build: int,
 
     update_result: pymongo.results.UpdateResult = await Package \
         .find_one(Package.id == name).update(
-            array.Push({Package.releases: release}),
-            Set({Package.last_updated: datetime.datetime.now()})
-        )
+        array.Push({Package.releases: release}),
+        Set({Package.last_updated: datetime.datetime.now()})
+    )
 
     if update_result.modified_count < 1:
         raise Exception(f"No package with {name}")
