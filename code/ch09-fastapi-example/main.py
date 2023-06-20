@@ -27,8 +27,8 @@ async def configure_db():
     await mongo_setup.init_connection('pypi')
 
 
-@api.get('/')
-def hello_world():
+@api.get('/', include_in_schema=False)
+def index():
     return {'message': "Greetings to the world!"}
 
 
