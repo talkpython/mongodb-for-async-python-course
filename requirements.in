@@ -2,6 +2,7 @@ argon2_cffi
 beanie
 fastapi
 httpx
+jinja2
 passlib
 pydantic
 uvicorn
