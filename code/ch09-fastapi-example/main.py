@@ -10,8 +10,10 @@ api = fastapi.FastAPI()
 
 def main():
     configure_routing()
-    # NO!
+
+    # NO! Use @api.on_event('startup')
     # asyncio.run(mongo_setup.init_connection('pypi'))
+
     uvicorn.run(api)
 
 
