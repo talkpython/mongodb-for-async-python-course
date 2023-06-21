@@ -3,6 +3,7 @@ from typing import Optional
 
 import beanie
 import pydantic
+import pymongo
 
 
 class Location(pydantic.BaseModel):
@@ -21,4 +22,9 @@ class User(beanie.Document):
 
     class Settings:
         name = 'users'
-        indexes = []
+        indexes = [
+            pymongo.IndexModel(keys=[("created_date", pymongo.DESCENDING)], name="created_date_descend"),
+            pymongo.IndexModel(keys=[("last_login", pymongo.DESCENDING)], name="last_login_descend"),
+
+            pymongo.IndexModel(keys=[("email", pymongo.ASCENDING)], name="email_ascend", unique=True),
+        ]
