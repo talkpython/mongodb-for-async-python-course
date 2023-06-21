@@ -3,6 +3,7 @@ from typing import Optional
 
 import beanie as beanie
 import pydantic
+import pymongo
 
 
 class Release(pydantic.BaseModel):
@@ -32,4 +33,6 @@ class Package(beanie.Document):
 
     class Settings:
         name = 'packages'
-        indexes = []
+        indexes = [
+            pymongo.IndexModel(keys=[('last_updated', pymongo.DESCENDING)], name='last_updated_descending')
+        ]
