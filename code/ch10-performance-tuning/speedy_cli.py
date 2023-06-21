@@ -9,7 +9,7 @@ TIMES: int = 100
 
 
 async def main():
-    await mongo_setup.init_db('pypi', silent=True)
+    await mongo_setup.init_connection('pypi')
     print_header()
 
     await summary()
