@@ -34,5 +34,20 @@ class Package(beanie.Document):
     class Settings:
         name = 'packages'
         indexes = [
-            pymongo.IndexModel(keys=[('last_updated', pymongo.DESCENDING)], name='last_updated_descending')
+            pymongo.IndexModel(keys=[('last_updated', pymongo.DESCENDING)], name='last_updated_descending'),
+            pymongo.IndexModel(keys=[("created_date", pymongo.ASCENDING)], name="created_date_ascend"),
+            pymongo.IndexModel(keys=[("releases.created_date", pymongo.ASCENDING)],
+                               name="releases_created_date_ascend"),
+            pymongo.IndexModel(keys=[("author_email", pymongo.ASCENDING)], name="author_email_ascend"),
+
+            pymongo.IndexModel(keys=[("releases.major_ver", pymongo.ASCENDING)], name="releases_major"),
+            pymongo.IndexModel(keys=[("releases.minor_ver", pymongo.ASCENDING)], name="releases_minor"),
+            pymongo.IndexModel(keys=[("releases.build_ver", pymongo.ASCENDING)], name="releases_build"),
+
+            pymongo.IndexModel(keys=[
+                ("releases.major_ver", pymongo.ASCENDING),
+                ("releases.minor_ver", pymongo.ASCENDING),
+                ("releases.build_ver", pymongo.ASCENDING)
+            ],
+                name="releases_version_ascending"),
         ]
