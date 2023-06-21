@@ -47,7 +47,7 @@ def print_header():
     pad = 30
     print('/' + "-" * pad + '\\')
     print('|' + ' ' * pad + '|')
-    print('|        PyPI CLI v1.0 ' + ' ' * (pad - 22) + '|')
+    print('|        PyPI CLI v1.1 ' + ' ' * (pad - 22) + '|')
     print('|' + ' ' * pad + '|')
     print('\\' + "-" * pad + '/')
     print()
@@ -124,7 +124,7 @@ async def recent_packages():
 @timed_async
 async def timed_recent_packages(num):
     for _ in range(0, TIMES):
-        packages = await package_service.recent_packages(count=num, summary_only=True)
+        packages = await package_service.recently_updated(count=num)
 
     return packages
 
