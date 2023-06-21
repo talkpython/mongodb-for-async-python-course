@@ -76,8 +76,7 @@ async def search_db():
     package = await get_timed_package(name)
 
     if package:
-        print(f'Found {package.id}, last updated: {package.last_updated.date().isoformat()}, with '
-              f'{len(package.releases):,} releases.')
+        print(f'Found {package.id}, last updated: {package.last_updated.date().isoformat()}.')
     else:
         print(f"No package with ID {name} found.")
 
@@ -107,7 +106,7 @@ async def timed_package_count(build, major, minor):
 @timed_async
 async def get_timed_package(name):
     for _ in range(0, TIMES):
-        package = await package_service.package_by_name(name)
+        package = await package_service.package_by_name(name, summary_only=True)
 
     return package
 

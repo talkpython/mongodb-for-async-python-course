@@ -51,3 +51,18 @@ class Package(beanie.Document):
             ],
                 name="releases_version_ascending"),
         ]
+
+
+class PackageTopLevelOnly(pydantic.BaseModel):
+    id: str
+    last_updated: datetime.datetime
+    summary: str
+
+    class Settings:
+        projection = {
+            "id": "$_id",
+            "summary": "$summary",
+            "last_updated": "$last_updated",
+        }
+
+

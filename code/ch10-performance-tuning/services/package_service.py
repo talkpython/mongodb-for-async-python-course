@@ -6,7 +6,7 @@ from beanie.odm.operators.find.array import ElemMatch
 from beanie.odm.operators.update import array
 from beanie.odm.operators.update.general import Set, Inc
 
-from models.package import Package, Release
+from models.package import Package, Release, PackageTopLevelOnly
 from models.release_analytics import ReleaseAnalytics
 
 
@@ -30,14 +30,18 @@ async def recently_updated(count=5) -> list[Package]:
     return updated
 
 
-async def package_by_name(name: str) -> Optional[Package]:
+async def package_by_name(name: str, summary_only=False) -> Optional[Package] | Optional[PackageTopLevelOnly]:
     if not name:
         return None
 
     name = name.lower().strip()
 
-    package = await Package.find_one(Package.id == name)
-    return package
+    query = Package.find_one(Package.id == name)
+
+    if not summary_only:
+        return await query
+    else:
+        return await query.project(PackageTopLevelOnly)
 
 
 async def packages_with_version(major: int, minor: int, build: int) -> int:
