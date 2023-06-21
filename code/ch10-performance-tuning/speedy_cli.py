@@ -24,20 +24,21 @@ async def main():
         resp = input("Enter the character for your command: ").strip().lower()
         print('-' * 40)
 
-        if resp == 'x':
-            break
-        elif resp == 's':
-            await summary()
-        elif resp == 'f':
-            await search_db()
-        elif resp == 'p':
-            await recent_packages()
-        elif resp == 'u':
-            await create_user()
-        elif resp == 'r':
-            await create_release()
-        else:
-            print("Sorry, we don't understand that command.")
+        match resp:
+            case 'x':
+                break
+            case 's':
+                await summary()
+            case 'f':
+                await search_db()
+            case 'p':
+                await recent_packages()
+            case 'u':
+                await create_user()
+            case 'r':
+                await create_release()
+            case _:
+                print("Sorry, we don't understand that command.")
 
     print()
     print("kthx, bye.")
