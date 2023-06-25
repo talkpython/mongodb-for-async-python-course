@@ -6,7 +6,7 @@ import motor.motor_asyncio
 import models
 
 
-async def init_db(database: str, server: Optional[str] = 'localhost',
+async def init_connection(database: str, server: Optional[str] = 'localhost',
                   port: int = 27017, username: Optional[str] = None, password: Optional[str] = None,
                   use_ssl: bool = False):
     server = server or 'localhost'
