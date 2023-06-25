@@ -9,7 +9,17 @@ TIMES: int = 100
 
 
 async def main():
-    await mongo_setup.init_connection('pypi')
+    # Put outside the app, not here in reality
+    dev_mode = False
+
+    if dev_mode:
+        await mongo_setup.init_connection('pypi')
+    else:
+        await mongo_setup.init_connection(
+            'pypi', server='10.124.0.4', port=5621,
+            username='pypi-database-user', password='9827a696-6cb9-47cc-a71e-e8b0ef38e2a3',
+            use_ssl=True)
+
     print_header()
 
     await summary()
