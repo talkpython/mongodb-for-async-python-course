@@ -69,3 +69,13 @@ show dbs
 # This should fail:
 mongosh --host 10.124.0.2 --tls --tlsAllowInvalidCertificates --port 5621
 show dbs
+
+# Restore and import data (once downloaded per github readme)
+mongorestore --drop --db pypi mongodb://pypi-database-user:9827a696-6cb9-47cc-a71e-e8b0ef38e2a3@10.124.0.4:5621/?authSource=admin&tls=true&tlsInsecure=true ./
+
+# backup and export
+ssh -f root@mongo-course-server -L 5621:127.0.0.1:5621 -N
+mongodump --host localhost --ssl --tlsInsecure --port 5621 -u pypi-database-user -p 9827a696-6cb9-47cc-a71e-e8b0ef38e2a3 --authenticationDatabase admin --db pypi -o ./
+
+# Backup locally
+ssh -f root@mongo-course-server -L 5621:localhost:5621 -N
