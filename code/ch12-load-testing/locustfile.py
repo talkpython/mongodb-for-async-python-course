@@ -1,7 +1,7 @@
 import locust
 
 
-class ApiTest(locust.HttpUser):
+class ApiTest(locust.FastHttpUser):
     host = "http://127.0.0.1:8000"
     wait_time = locust.between(5, 30)
 
