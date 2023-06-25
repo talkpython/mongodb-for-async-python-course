@@ -10,7 +10,7 @@ TIMES: int = 100
 
 async def main():
     # Put outside the app, not here in reality
-    dev_mode = False
+    dev_mode = True
 
     if dev_mode:
         await mongo_setup.init_connection('pypi')
