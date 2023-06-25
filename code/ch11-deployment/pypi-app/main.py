@@ -29,7 +29,7 @@ def configure_routing():
 
 @api.on_event('startup')
 async def configure_db():
-    dev_mode = False
+    dev_mode = True
 
     if dev_mode:
         await mongo_setup.init_connection('pypi')
@@ -38,7 +38,6 @@ async def configure_db():
             'pypi', server='10.124.0.4', port=5621,
             username='pypi-database-user', password='9827a696-6cb9-47cc-a71e-e8b0ef38e2a3',
             use_ssl=True)
-    # await mongo_setup.init_connection('pypi')
 
 
 @api.get('/', include_in_schema=False)
