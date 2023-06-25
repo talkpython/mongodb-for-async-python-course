@@ -3,6 +3,7 @@ beanie
 fastapi
 httpx
 jinja2
+locust
 passlib
 pydantic
 uvicorn
