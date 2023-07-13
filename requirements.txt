@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-anyio==3.7.0
+anyio==3.7.1
     # via
     #   httpcore
     #   starlette
@@ -12,7 +12,7 @@ argon2-cffi==21.3.0
     # via -r requirements.in
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
-beanie==1.19.2
+beanie==1.20.0
     # via -r requirements.in
 blinker==1.6.2
     # via flask
@@ -26,18 +26,18 @@ certifi==2023.5.7
     #   requests
 cffi==1.15.1
     # via argon2-cffi-bindings
-charset-normalizer==3.1.0
+charset-normalizer==3.2.0
     # via requests
-click==8.1.3
+click==8.1.5
     # via
     #   beanie
     #   flask
     #   uvicorn
-configargparse==1.5.3
+configargparse==1.5.5
     # via locust
 dnspython==2.3.0
     # via pymongo
-fastapi==0.98.0
+fastapi==0.100.0
     # via -r requirements.in
 flask==2.3.2
     # via
@@ -46,9 +46,9 @@ flask==2.3.2
     #   locust
 flask-basicauth==0.2.0
     # via locust
-flask-cors==3.0.10
+flask-cors==4.0.0
     # via locust
-gevent==22.10.2
+gevent==23.7.0
     # via
     #   geventhttpclient
     #   locust
@@ -60,7 +60,7 @@ h11==0.14.0
     # via
     #   httpcore
     #   uvicorn
-httpcore==0.17.2
+httpcore==0.17.3
     # via httpx
 httpx==0.24.1
     # via -r requirements.in
@@ -93,13 +93,13 @@ psutil==5.9.5
     # via locust
 pycparser==2.21
     # via cffi
-pydantic==1.10.9
+pydantic==1.10.11
     # via
     #   -r requirements.in
     #   beanie
     #   fastapi
     #   lazy-model
-pymongo==4.4.0
+pymongo==4.4.1
     # via motor
 pyzmq==25.1.0
     # via locust
@@ -108,9 +108,7 @@ requests==2.31.0
 roundrobin==0.0.4
     # via locust
 six==1.16.0
-    # via
-    #   flask-cors
-    #   geventhttpclient
+    # via geventhttpclient
 sniffio==1.3.0
     # via
     #   anyio
@@ -120,8 +118,9 @@ starlette==0.27.0
     # via fastapi
 toml==0.10.2
     # via beanie
-typing-extensions==4.6.3
+typing-extensions==4.7.1
     # via
+    #   fastapi
     #   locust
     #   pydantic
 urllib3==2.0.3
