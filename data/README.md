@@ -2,7 +2,7 @@
 
 This course uses custom data from [PyPI](https://pypi.org) sources. 
 
-Start by **installing MongoDB** ([steps](www.mongodb.com/docs/manual/administration/install-community/)) and **MongoDB Management Tools** ([steps](www.mongodb.com/docs/database-tools/installation/installation/)). Start the MongoDB server running as well as the management tools binaries in the path.
+Start by **installing MongoDB** ([steps](https://www.mongodb.com/docs/manual/administration/install-community/)) and **MongoDB Management Tools** ([steps](https://www.mongodb.com/docs/database-tools/installation/installation/)). Start the MongoDB server running as well as the management tools binaries in the path.
 
 **Download the data** from Talk Python at:
 
