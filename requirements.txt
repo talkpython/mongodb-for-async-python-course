@@ -4,6 +4,8 @@
 #
 #    pip-compile requirements.in
 #
+annotated-types==0.5.0
+    # via pydantic
 anyio==3.7.1
     # via
     #   httpcore
@@ -12,13 +14,13 @@ argon2-cffi==21.3.0
     # via -r requirements.in
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
-beanie==1.20.0
+beanie==1.21.0
     # via -r requirements.in
 blinker==1.6.2
     # via flask
 brotli==1.0.9
     # via geventhttpclient
-certifi==2023.5.7
+certifi==2023.7.22
     # via
     #   geventhttpclient
     #   httpcore
@@ -28,16 +30,16 @@ cffi==1.15.1
     # via argon2-cffi-bindings
 charset-normalizer==3.2.0
     # via requests
-click==8.1.5
+click==8.1.6
     # via
     #   beanie
     #   flask
     #   uvicorn
-configargparse==1.5.5
+configargparse==1.7
     # via locust
-dnspython==2.3.0
+dnspython==2.4.1
     # via pymongo
-fastapi==0.100.0
+fastapi==0.100.1
     # via -r requirements.in
 flask==2.3.2
     # via
@@ -75,9 +77,9 @@ jinja2==3.1.2
     # via
     #   -r requirements.in
     #   flask
-lazy-model==0.0.5
+lazy-model==0.1.0b0
     # via beanie
-locust==2.15.1
+locust==2.16.0
     # via -r requirements.in
 markupsafe==2.1.3
     # via
@@ -93,12 +95,14 @@ psutil==5.9.5
     # via locust
 pycparser==2.21
     # via cffi
-pydantic==1.10.11
+pydantic==2.1.1
     # via
     #   -r requirements.in
     #   beanie
     #   fastapi
     #   lazy-model
+pydantic-core==2.4.0
+    # via pydantic
 pymongo==4.4.1
     # via motor
 pyzmq==25.1.0
@@ -120,12 +124,14 @@ toml==0.10.2
     # via beanie
 typing-extensions==4.7.1
     # via
+    #   beanie
     #   fastapi
     #   locust
     #   pydantic
-urllib3==2.0.3
+    #   pydantic-core
+urllib3==2.0.4
     # via requests
-uvicorn==0.22.0
+uvicorn==0.23.2
     # via -r requirements.in
 werkzeug==2.3.6
     # via
