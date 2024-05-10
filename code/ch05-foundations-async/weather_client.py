@@ -33,7 +33,8 @@ async def main_naive():
         show_report(report)
 
     dt = datetime.datetime.now() - t0
-    print(f"Done in {dt.total_seconds() * 100:,.1f} ms.")
+    # Oops, recording has 100, should have been 1,000. But the ratios still hold the same.
+    print(f"Done in {dt.total_seconds() * 1000:,.1f} ms.")
 
 
 async def main():
